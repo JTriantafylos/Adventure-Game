@@ -1,0 +1,152 @@
+/* Colors
+Grey: #bfc4cc
+Pale Blue: #94b0dd
+*/
+
+#messageBox {
+	position: fixed;
+	height: 160px;
+	width: 70%;
+	bottom: 5%;
+	left: 15%;
+
+	padding: 16px;
+	box-sizing: border-box;
+
+	background-color: rgba(191, 196, 204, 0.85);
+
+	border: #94b0dd 8px ridge;
+	opacity: 0;
+}
+
+#messageBox, #messageBox > * {
+	transition: opacity 0.6s;
+}
+
+#messageBox > p {
+	font-family: 'Poiret One', cursive;
+	font-size: 24px;
+	font-weight: bold;
+
+	text-align: center;
+}
+
+#clickToContinue {
+	position: absolute;
+	bottom: 16px;
+	left: 50%;
+    transform: translate(-50%, 0);
+
+	font-family: 'Poiret One', cursive;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#clickToContinue:hover {
+	cursor: pointer;
+	font-size: 22px;
+}
+
+#roomArrowLeft {
+	opacity: 0;
+	transition: 0.3s;
+
+	position: fixed;
+	left: 0%;
+	height: 100%;
+
+	padding: 1%;
+
+	background-color: rgba(191, 196, 204, 0.35);
+}
+
+#roomArrowRight {
+	opacity: 0;
+	transition: 0.3s;
+
+	position: fixed;
+	right: 0%;
+	height: 100%;
+
+	padding: 1%;
+
+	background-color: rgba(191, 196, 204, 0.35);
+}
+
+#roomArrowUp {
+	opacity: 0;
+	transition: 0.3s;
+
+	position: fixed;
+	top: 0%;
+	width: 80%;
+
+	margin-left: 10%;
+	margin-right: 10%;
+
+	padding: 0.5%;
+	box-sizing: border-box;
+
+	background-color: rgba(191, 196, 204, 0.35);
+}
+
+#roomArrowDown {
+	opacity: 0;
+	transition: 0.3s;
+
+	position: fixed;
+	bottom: 0%;
+	width: 80%;
+
+	margin-left: 10%;
+	margin-right: 10%;
+
+	padding: 0.5%;
+	box-sizing: border-box;
+
+	background-color: rgba(191, 196, 204, 0.35);
+}
+
+#roomArrowLeft:hover, #roomArrowRight:hover, #roomArrowUp:hover, #roomArrowDown:hover{
+	transition: 0.2s;
+	cursor: pointer;
+	background-color: rgba(191, 196, 204, 0.65);
+}
+
+#roomArrowLeft > *,  #roomArrowRight > *{
+	position: relative;
+	top: 45%;
+}
+
+#roomArrowUp > *, #roomArrowDown > * {
+	position: relative;
+	left: 45%;
+
+}
+
+#imgNotePiece1 {
+	visibility: hidden;
+	
+	position: absolute;
+	width: 120px;
+	bottom: 32px;
+	left: 32px;
+}
+		
+#imgNotePiece2 {
+	visibility: hidden;
+
+	position: absolute;
+	width: 120px;
+	bottom: 32px;
+	left: 32px;
+}
+		
+#imgNotePiece3 {
+	visibility: hidden;
+
+	position: absolute;
+	width: 120px;
+	bottom: 32px;
+	left: 32px;
+}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Museum Game</title>
+
+		<link rel="stylesheet" type="text/css" href="css/browser_reset.css">
+
+		<link rel="stylesheet" type="text/css" href="css/global.css">
+
+		<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+
+		<style>
+			body {
+				background: url(images/museumTreasure.png) center fixed;
+				background-size: cover;
+			}
+		</style>
+
+		<script src="js/pageLoad.js"></script>
+
+		<script>
+		var dialogProgress = 0;
+
+		function continueStory()
+		{
+			if (dialogProgress == 0)
+			{
+				document.getElementById("message").textContent = "Odd that no one is guarding any of this...";
+				dialogProgress++;
+			}
+			else
+			{
+				location = "pageEncounter.html";
+			}
+		}
+		</script>
+	</head>
+
+	<body>
+		<div id="messageBox">
+			<p id="message">You've never seen so much gold in your life.</p>
+			<span id="clickToContinue" onClick="continueStory()">Click Here To Continue</span>
+		</div>
+	</body>
+</html>

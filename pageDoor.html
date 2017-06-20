@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Museum Game</title>
+
+		<link rel="stylesheet" type="text/css" href="css/browser_reset.css">
+
+		<link rel="stylesheet" type="text/css" href="css/global.css">
+
+		<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+
+		<style>
+			body {
+				background: url(images/museumDoor.jpeg) center fixed;
+				background-size: cover;
+			}
+
+			#scrambleInput {
+				visibility: hidden;
+				position: relative;
+				left: 50%;
+				transform: translateX(-50%);
+
+				margin-top: 8px;
+
+				font-family: 'Poiret One', cursive;
+				font-size: 24px;
+				font-weight: bold;
+			}
+		</style>
+
+		<script src="js/pageLoad.js"></script>
+
+		<script>
+		var dialogProgress = 0;
+
+		function continueStory()
+		{
+			if (dialogProgress == 0)
+			{
+				document.getElementById("message").textContent = "You see the a keypad and a scrambled word on the door...";
+				dialogProgress++;
+			}
+			else if (dialogProgress == 1)
+			{
+				document.getElementById("message").textContent = "The word on the door is is 'raereuts'";
+				dialogProgress++;
+			}
+			else if (dialogProgress == 2)
+			{
+				document.getElementById("message").textContent = "Enter the unscrambled word (raereuts):";
+				document.getElementById("scrambleInput").style.visibility = "visible";
+				dialogProgress++;
+			}
+			else if (dialogProgress == 3)
+			{
+				if(document.getElementById("scrambleInput").value.toLowerCase() == "treasure")
+				{
+					dialogProgress++;
+					continueStory();
+				}
+				else
+				{
+					document.getElementById("scrambleInput").value = "";
+					document.getElementById("scrambleInput").placeholder = "Entry Denied!";
+				}
+			}
+			else if (dialogProgress == 4)
+			{
+				document.getElementById("message").textContent = "The door has been unlocked!";
+				document.getElementById("scrambleInput").style.visibility = "hidden";
+				dialogProgress++;
+			}
+			else
+			{
+				location = "pageTreasure.html";
+			}
+		}
+		</script>
+	</head>
+
+	<body>
+		<div id="messageBox">
+			<p id="message">You find yourself at a locked doorway.</p>
+			<input id="scrambleInput" type="text" maxlength="12">
+			<span id="clickToContinue" onClick="continueStory()">Click Here To Continue</span>
+		</div>
+	</body>
+</html>

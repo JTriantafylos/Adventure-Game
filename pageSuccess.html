@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Museum Game</title>
+
+		<link rel="stylesheet" type="text/css" href="css/browser_reset.css">
+
+		<link rel="stylesheet" type="text/css" href="css/global.css">
+
+		<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+
+		<style>
+			body {
+				background: url(images/museumEntrance.jpg) center fixed;
+				background-size: cover;
+			}
+		</style>
+
+		<script src="js/pageLoad.js"></script>
+
+		<script>
+			function continueStory()
+			{
+				document.getElementById("messageBox").style.visibility = "hidden";
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="messageBox">
+			<p>You make it out of the museum with your pockets stuffed with gold!</p>
+			<span id="clickToContinue" onClick="continueStory()">Thanks for playing!</span>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Museum Game</title>
+
+		<link rel="stylesheet" type="text/css" href="css/browser_reset.css">
+
+		<link rel="stylesheet" type="text/css" href="css/global.css">
+
+		<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+
+		<style>
+			body {
+				background: url(images/museumHallway.jpg) center fixed;
+				background-size: cover;
+			}
+		</style>
+
+		<script src="js/pageLoad.js"></script>
+
+		<script>
+		var dialogProgress = 0;
+
+		var noteFound1 = sessionStorage.getItem("hasNote1");
+		var noteFound2 = sessionStorage.getItem("hasNote2");
+		var noteFound3 = sessionStorage.getItem("hasNote3");
+
+		function continueStory()
+		{
+			if (dialogProgress == 0 && (noteFound1 != "true" || noteFound2 != "true" || noteFound3 != "true"))
+			{
+				document.getElementById("message").textContent = "The only way to go seems to be back...";
+				dialogProgress++;
+			}
+			else if (dialogProgress == 0 && noteFound1 == "true" && noteFound2 == "true" && noteFound3 == "true")
+			{
+				document.getElementById("message").textContent = "The only way to go seems to be forward...";
+				dialogProgress++;
+			}
+			else
+			{
+				if (noteFound1 == "true" && noteFound2 == "true" && noteFound3 == "true")
+				{
+					document.getElementById("roomArrowUp").style.opacity = "1";
+				}
+				document.getElementById("messageBox").style.visibility = "hidden";
+				document.getElementById("roomArrowRight").style.opacity = "1";
+			}
+		}
+
+		function moveRoom(direction)
+		{
+			switch (direction)
+			{
+				case "RIGHT":
+				if (noteFound1 == "true" && noteFound2 == "true" && noteFound3 == "true")
+				{
+					document.getElementById("roomArrowRight").style.opacity = "0";
+					document.getElementById("roomArrowUp").style.opacity = "0";
+					document.getElementById("messageBox").style.visibility = "visible";
+					document.getElementById("message").textContent = "The door seems to have locked behind you...";
+				}
+				else
+				{
+					location = "pageUpstairsCenter.html";
+				}
+				break;
+				case "UP":
+				if (noteFound1 == "true" && noteFound2 == "true" && noteFound3 == "true")
+				{
+					location = "pageDoor.html";
+				}
+				break;
+			}
+
+		}
+		</script>
+	</head>
+
+	<body>
+
+		<div id="roomArrowRight" onclick="moveRoom('RIGHT')">
+			<i class="fa fa-arrow-right fa-5x"></i>
+		</div>
+
+		<div id="roomArrowUp" onclick="moveRoom('UP')">
+			<i class="fa fa-arrow-up fa-5x"></i>
+		</div>
+
+		<img id="imgNotePiece1" src="images/notePiece1.png">
+		<img id="imgNotePiece2" src="images/notePiece2.png">
+		<img id="imgNotePiece3" src="images/notePiece3.png">
+
+		<div id="messageBox">
+			<p id="message"></p>
+			<span id="clickToContinue" onClick="continueStory()">Click Here To Continue</span>
+		</div>
+	</body>
+</html>
+
+<script>
+	if (noteFound1 == "true" && noteFound2 == "true" && noteFound3 == "true")
+	{
+		document.getElementById("message").textContent = "The note says that there may be valuables up ahead.";
+	}
+	else
+	{
+		document.getElementById("message").textContent = "There doesn't seem to be anything interesting in this hallway.";
+	}
+</script>

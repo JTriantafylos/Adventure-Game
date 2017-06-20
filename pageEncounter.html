@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Museum Game</title>
+
+		<link rel="stylesheet" type="text/css" href="css/browser_reset.css">
+
+		<link rel="stylesheet" type="text/css" href="css/global.css">
+
+		<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+
+		<style>
+			body {
+				background: url(images/museumGuard.jpg) center fixed;
+				background-size: cover;
+			}
+
+			#replyForm {
+				visibility: hidden;
+			}
+
+			#messageBox > form {
+				font-family: 'Poiret One', cursive;
+				font-size: 18px;
+				font-weight: bold;
+
+				text-align: center;
+				margin-top: 8px;
+			}
+		</style>
+
+		<script src="js/pageLoad.js"></script>
+
+		<script>
+		var dialogProgress = 0;
+		var replyOption = 0;
+
+		function continueStory()
+		{
+			if (dialogProgress == 0)
+			{
+				document.getElementById("message").textContent = "He asks 'What are you doing here?'";
+				dialogProgress++;
+			}
+			else if (dialogProgress == 1)
+			{
+				document.getElementById("replyForm").style.visibility = "visible";
+				document.getElementById("message").textContent = "You reply:";
+				dialogProgress++;
+			}
+			else if (dialogProgress == 2)
+			{
+				document.getElementById("replyForm").style.visibility = "hidden";
+
+				dialogProgress++;
+
+				if(document.getElementById("replyChoice1").checked)
+				{
+					replyOption = 1;
+					document.getElementById("message").textContent = "He took the bait and left you alone, giving you time to fill your pockets with gold.";
+				}
+				else if(document.getElementById("replyChoice2").checked)
+				{
+					replyOption = 2;
+					document.getElementById("message").textContent = "He says 'Not on my watch.', before dragging you outside.";
+				}
+				else if(document.getElementById("replyChoice3").checked)
+				{
+					replyOption = 3;
+					document.getElementById("message").textContent = "He says 'Sorry, this is a private area...', before dragging you outside.";
+				}
+			}
+			else
+			{
+				if (replyOption == 1)
+				{
+					location = "pageSuccess.html";
+				}
+				else if (replyOption == 2 || replyOption == 3)
+				{
+					location = "pageFailure.html";
+				}
+
+			}
+		}
+		</script>
+	</head>
+
+	<body>
+		<div id="messageBox">
+			<p id="message">A guard has found you...</p>
+
+			<form id="replyForm" name="responseForm" method="post" onSubmit="return true">
+					<input id="replyChoice1" name="userReplyChoice" value="reply1" type="radio" required/>
+					<label for="replyChoice1">I'm the new night janitor...</label>
+				</p>
+				<p>
+					<input id="replyChoice2" name="userReplyChoice" value="reply2" type="radio"/>
+					<label for="replyChoice2">I'm here to take all the gold!</label>
+				</p>
+				<p>
+					<input id="replyChoice3" name="userReplyChoice" value="reply3" type="radio"/>
+					<label for="replyChoice3">*Stay silent*</label>
+				</p>
+			</form>
+
+			<span id="clickToContinue" onClick="continueStory()">Click Here To Continue</span>
+		</div>
+	</body>
+</html>

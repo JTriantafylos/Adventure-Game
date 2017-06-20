@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Museum Game</title>
+
+		<link rel="stylesheet" type="text/css" href="css/browser_reset.css">
+
+		<link rel="stylesheet" type="text/css" href="css/global.css">
+
+		<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+
+		<style>
+			body {
+				background: url(images/museumQuad.jpg) center fixed;
+				background-size: cover;
+			}
+
+			#imgNotePiece2Hidden {
+				position: absolute;
+				bottom: 24%;
+				right: 15%;
+				width: 96px;
+			}
+
+			#imgNotePiece2Hidden:hover {
+				cursor: pointer;
+			}
+		</style>
+
+		<script src="js/pageLoad.js"></script>
+
+		<script>
+		var dialogProgress = 0;
+
+		function findNote2()
+		{
+			sessionStorage.setItem('hasNote2','true')
+			sessionStorage.setItem('notePiece2Img','false');
+			document.getElementById("messageBox").style.visibility = "visible";
+			document.getElementById("imgNotePiece2Hidden").style.visibility = "hidden";
+			document.getElementById("imgNotePiece2").style.visibility = "visible";
+			document.getElementById("message").textContent = "You found a piece of a note!";
+		}
+
+		function continueStory()
+		{
+			if (dialogProgress == 0)
+			{
+				document.getElementById("message").textContent = "Maybe you should keep looking around...";
+				dialogProgress++;
+			}
+			else
+			{
+				document.getElementById("messageBox").style.visibility = "hidden";
+				document.getElementById("roomArrowLeft").style.opacity = "1";
+				document.getElementById("roomArrowRight").style.opacity = "1";
+				document.getElementById("roomArrowDown").style.opacity = "1";
+			}
+		}
+
+		function moveRoom(direction)
+		{
+			switch (direction)
+			{
+				case "LEFT":
+				location = "pageUpstairsLeft.html";
+				break;
+				case "RIGHT":
+				location = "pageUpstairsRight.html";
+				break;
+				case "DOWN":
+				location = "pageLobby.html";
+				break;
+			}
+
+		}
+		</script>
+	</head>
+
+	<body>
+		<div id="roomArrowLeft" onclick="moveRoom('LEFT')">
+			<i class="fa fa-arrow-left fa-5x"></i>
+		</div>
+
+		<div id="roomArrowRight" onclick="moveRoom('RIGHT')">
+			<i class="fa fa-arrow-right fa-5x"></i>
+		</div>
+
+		<div id="roomArrowDown" onclick="moveRoom('DOWN')">
+			<i class="fa fa-arrow-down fa-5x"></i>
+		</div>
+
+		<img id="imgNotePiece2Hidden" onclick="findNote2()" src="images/notePiece2.png">
+
+		<img id="imgNotePiece1" src="images/notePiece1.png">
+		<img id="imgNotePiece2" src="images/notePiece2.png">
+		<img id="imgNotePiece3" src="images/notePiece3.png">
+
+		<div id="messageBox">
+			<p id="message">It is dead quiet up here.</p>
+			<span id="clickToContinue" onClick="continueStory()">Click Here To Continue</span>
+		</div>
+	</body>
+</html>
+
+<script>
+	if(sessionStorage.getItem('notePiece2Img') == "false")
+	{
+		document.getElementById("imgNotePiece2Hidden").style.visibility = "hidden";
+	}
+	else
+	{
+		document.getElementById("imgNotePiece2Hidden").style.visibility = "visible";
+	}
+
+</script>
